@@ -1,0 +1,24 @@
+{
+  "name": "elevator-challenge",
+  "version": "1.0.0",
+  "description": "Elevator Challenge (Levels 1-6) - TDD with Jest",
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest",
+    "demo": "node src/demo.js",
+    "check": "npm test && npm run demo",
+    "ui": "http-server ui -p 5173 -c-1 -o",
+    "server": "node server/index.js",
+    "dev": "concurrently \"npm run server\" \"npm run ui\""
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "http-server": "^14.1.1",
+    "jest": "^30.0.0",
+    "supertest": "^6.3.3"
+  }
+}

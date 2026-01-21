@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elevator Visualizer</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div>
+          <div class="title">Elevator Visualizer</div>
+          <div class="subtitle">FIFO pickup & drop-off (Levels 1–6) + idle policy + API (Level 9)</div>
+        </div>
+        <div class="metrics" id="metrics">
+          <div class="metric">
+            <div class="metricLabel">Floor</div>
+            <div class="metricValue" id="mFloor">0</div>
+          </div>
+          <div class="metric">
+            <div class="metricLabel">Stops</div>
+            <div class="metricValue" id="mStops">0</div>
+          </div>
+          <div class="metric">
+            <div class="metricLabel">Floors</div>
+            <div class="metricValue" id="mFloors">0</div>
+          </div>
+          <div class="metric">
+            <div class="metricLabel">Requests</div>
+            <div class="metricValue" id="mRequests">0</div>
+          </div>
+          <div class="metric">
+            <div class="metricLabel">Riders</div>
+            <div class="metricValue" id="mRiders">0</div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="panel buildingPanel">
+          <div class="panelTitle">Building</div>
+          <div class="building" id="building">
+            <div class="floors" id="floors"></div>
+            <div class="shaft">
+              <div class="elevatorCar" id="elevatorCar" aria-label="Elevator"></div>
+            </div>
+          </div>
+          <div class="hint">
+            Tip: add people below, then click <b>Step</b> (one request) or <b>Run</b> (all requests).
+          </div>
+        </section>
+
+        <section class="panel controlsPanel">
+          <div class="panelTitle">Controls</div>
+
+          <form class="form" id="addForm">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" placeholder="e.g. Bob" value="Bob" required />
+            </div>
+            <div class="field">
+              <label for="from">Current floor</label>
+              <input id="from" name="from" type="number" min="0" max="9" value="3" required />
+            </div>
+            <div class="field">
+              <label for="to">Drop-off floor</label>
+              <input id="to" name="to" type="number" min="0" max="9" value="9" required />
+            </div>
+            <button class="btn primary" type="submit">Add request</button>
+          </form>
+
+          <div class="row">
+            <div class="field grow">
+              <label for="time">Time (Level 6)</label>
+              <select id="time" name="time">
+                <option value="11:59">Before 12:00 (return to lobby)</option>
+                <option value="13:00">After 12:00 (stay)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="speed">Speed</label>
+              <select id="speed" name="speed">
+                <option value="1">Normal</option>
+                <option value="0.5">Fast</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="btnRow">
+            <button class="btn" id="stepBtn" type="button">Step</button>
+            <button class="btn primary" id="runBtn" type="button">Run</button>
+            <button class="btn success" id="resetBtn" type="button">Reset</button>
+          </div>
+
+          <div class="split">
+            <div>
+              <div class="panelTitleSmall">Queue</div>
+              <div class="list" id="queueList"></div>
+            </div>
+            <div>
+              <div class="panelTitleSmall">Riders</div>
+              <div class="list" id="ridersList"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel logPanel">
+          <div class="panelTitle">
+            Log
+            <button class="btn small" id="clearLogBtn" type="button">Clear</button>
+          </div>
+          <pre class="log" id="log"></pre>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
+
+
